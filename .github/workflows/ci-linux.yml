@@ -32,7 +32,11 @@ jobs:
         make -j 4 check
         make clean
         export EXTRA_CFLAGS="-DIP_FORWARD=1 -DIP_NAPT=1 -DLWIP_ARCH_CC_H -include cc_esp_platform.h" && export CC="cc $EXTRA_CFLAGS"
-        make -j 4 check      
+        make -j 4 check
+        make clean
+        export EXTRA_CFLAGS="-DIP_FORWARD=1 -DESP_TEST_DEBUG=1 -DIP_NAPT=1 -DLWIP_ARCH_CC_H -include cc_esp_platform.h" && export CC="cc $EXTRA_CFLAGS"
+        make -j 4 check    
+
 
     - name: Run cmake
       run: mkdir build && cd build && cmake .. -G Ninja
