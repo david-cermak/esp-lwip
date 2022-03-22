@@ -112,8 +112,9 @@ static void
 napt_debug_print(void)
 {
   int i, next;
+  u16_t nr_total;
   u32_t now = sys_now();
-  uint16_t nr_total = napt_stats.nr_active_tcp + napt_stats.nr_active_udp + napt_stats.nr_active_icmp;
+  nr_total = napt_stats.nr_active_tcp + napt_stats.nr_active_udp + napt_stats.nr_active_icmp;
   DPRINTF(("NAPT table (%"U16_F"+%"U16_F"+%"U16_F"=%"U16_F" / %"U16_F"):\n",
            napt_stats.nr_active_tcp, napt_stats.nr_active_udp, napt_stats.nr_active_icmp, nr_total, napt_stats.max_entries));
   if (nr_total == 0) return;
@@ -123,6 +124,7 @@ napt_debug_print(void)
   DPRINTF(("+-----------------------+-----------------------+-------+---------+----------+\n"));
   for (i = napt_list; i != NO_IDX; i = next) {
      struct ip_napt_entry *t = &ip_napt_table[i];
+     u8_t p;
      next = t->next;
 
      DPRINTF(("| %3"U16_F".%3"U16_F".%3"U16_F".%3"U16_F":%5"U16_F" ",
@@ -139,7 +141,7 @@ napt_debug_print(void)
               ((const u8_t*) (&t->dest))[3],
               lwip_ntohs(t->dport)));
 
-     uint8_t p = t->proto;
+     p = t->proto;
      DPRINTF(("| %5"U16_F" | %c%c%c%c%c%c%c | %8"U32_F" |\n",
               lwip_ntohs(t->mport),
               (p == IP_PROTO_TCP ? 'T' : (p == IP_PROTO_UDP ? 'U' : (p == IP_PROTO_ICMP ? 'I' : '?'))),
