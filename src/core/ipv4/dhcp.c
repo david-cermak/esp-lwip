@@ -1461,6 +1461,7 @@ dhcp_release_and_stop(struct netif *netif)
   acd_remove(netif, &dhcp->acd);
 #endif
 
+  ESP_LWIP_DHCP_FINE_CLOSE(netif, dhcp);
   if (dhcp->pcb_allocated != 0) {
     dhcp_dec_pcb_refcount(); /* free DHCP PCB if not needed any more */
     dhcp->pcb_allocated = 0;
