@@ -143,7 +143,7 @@
 #define DHCP_SET_TIMEOUT_FROM_OFFERED_T2_REBIND(res, dhcp) SET_TIMEOUT_FROM_OFFERED(res, (dhcp)->offered_t2_rebind, 0, 0xffff)
 
 #define DHCP_NEXT_TIMEOUT_THRESHOLD ((60 + DHCP_COARSE_TIMER_SECS / 2) / DHCP_COARSE_TIMER_SECS)
-#define DHCP_REQUEST_BACKOFF_SEQUENCE(state, tries)   (u16_t)(( (tries) < 6 ? 1 << (tries) : 60) * 1000)
+#define DHCP_REQUEST_BACKOFF_SEQUENCE(state, tries)   ((u16_t)(( (tries) < 6 ? 1 << (tries) : 60) * 1000))
 
 #endif /* DHCP_DEFINE_CUSTOM_TIMEOUTS */
 
