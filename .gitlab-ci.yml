@@ -31,6 +31,7 @@ build_all:
   tags:
     - host_test
   script:
+    - cp contrib/examples/example_app/lwipcfg.h.ci contrib/examples/example_app/lwipcfg.h
     - mkdir build && cd build && cmake .. -G Ninja
     - cmake --build .
     - cmake --build . --target lwipdocs
