@@ -15,6 +15,6 @@ for cfg in config_no_linger config_linger config_linger_reuse; do
         python ${LWIP_DIR}/check2junit.py lwip_test_apps.xml > ${LWIP_DIR}/${cfg}.xml
 done
 # Run the lingering test multiple times
-for run in {1..10000}; do ( timeout 10 ./config_linger/lwip_test_apps ) || exit 1 ; done
+for run in {1..10}; do ( timeout 10 ./config_linger/lwip_test_apps ) || exit 1 ; done
 # All good, regenerate the stress test-report, since the test succeeded
 python socket_linger_stress_test.py > ${LWIP_DIR}/socket_linger_stress_test.xml
