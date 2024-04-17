@@ -96,9 +96,9 @@
 
 #ifdef IP_NAPT
 #define IP_NAPT_MAX                     16
+#include "lwip/arch.h"
 #undef LWIP_RAND
 #define LWIP_RAND() (esp_random())
-#include "lwip/arch.h"
 u32_t esp_random(void);
 #endif /* IP_NAPT */
 /* ESP debug options */
