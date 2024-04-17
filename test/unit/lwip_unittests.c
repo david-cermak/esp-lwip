@@ -95,8 +95,9 @@ int main(void)
     mqtt_suite,
     sockets_suite,
 #if PPP_SUPPORT && PPPOS_SUPPORT
-    , pppos_suite
+    pppos_suite,
 #endif /* PPP_SUPPORT && PPPOS_SUPPORT */
+#endif /* ESP_TEST_DEBUG */
     ip4route_suite
   };
   size_t num = sizeof(suites)/sizeof(void*);
