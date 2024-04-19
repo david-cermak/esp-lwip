@@ -162,6 +162,7 @@ u32_t esp_random(void);
 #endif /* ESP_TEST_DEBUG */
 #define ESP_LWIP_IGMP_TIMERS_ONDEMAND           1
 #define ESP_LWIP_MLD6_TIMERS_ONDEMAND           1
+#define DNS_FALLBACK_SERVER_INDEX       (DNS_MAX_SERVERS - 1)
 
 #else
 #define ESP_LWIP                                0
