@@ -1,0 +1,24 @@
+# Fork-only smoke test: sync-jira-actions@v1 (expect setup OK, then early exit / auth fail).
+# Do not merge to espressif/esp-lwip.
+name: Smoke (new) Sync PRs to Jira
+
+on:
+  push:
+
+jobs:
+  smoke_new_sync_jira:
+    name: Smoke sync-jira-actions@v1
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Sync PRs to Jira project (composite @v1)
+        uses: espressif/sync-jira-actions@v1
+        with:
+          cron_job: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          JIRA_PASS: dummy
+          JIRA_PROJECT: IDFGH
+          JIRA_COMPONENT: esp-lwip
+          JIRA_URL: https://example.invalid
+          JIRA_USER: dummy

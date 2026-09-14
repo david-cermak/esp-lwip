@@ -1,0 +1,24 @@
+# Fork-only smoke test: legacy Docker action (expect apt/Docker build failure).
+# Do not merge to espressif/esp-lwip.
+name: Smoke (old) Sync PRs to Jira
+
+on:
+  push:
+
+jobs:
+  smoke_old_sync_jira:
+    name: Smoke old sync_issues_to_jira
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Sync PRs to Jira project (legacy Docker action)
+        uses: espressif/github-actions/sync_issues_to_jira@master
+        with:
+          cron_job: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          JIRA_PASS: dummy
+          JIRA_PROJECT: IDFGH
+          JIRA_COMPONENT: esp-lwip
+          JIRA_URL: https://example.invalid
+          JIRA_USER: dummy
